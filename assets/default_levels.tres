@@ -1,0 +1,251 @@
+[gd_resource type="Resource" script_class="Bundle" load_steps=24 format=3 uid="uid://llhw2mb1u7hu"]
+
+[ext_resource type="Script" path="res://scripts/content/level_item.gd" id="2_l81q7"]
+[ext_resource type="Script" path="res://scenes/ui/health_icon.gd" id="3_ffgy4"]
+[ext_resource type="Texture2D" uid="uid://cshoihsf026ps" path="res://assets/sprites/characters/icons/dad.png" id="4_uxjjg"]
+[ext_resource type="Script" path="res://scripts/content/song_item.gd" id="5_ctti7"]
+[ext_resource type="Texture2D" uid="uid://c15q6tgp33pxa" path="res://assets/sprites/menu/story_menu/titles/week6.png" id="6_gje2y"]
+[ext_resource type="Texture2D" uid="uid://ca53i8v1ughfl" path="res://assets/sprites/characters/icons/senpai.png" id="7_2tjle"]
+[ext_resource type="Texture2D" uid="uid://cfi333mpo5xdd" path="res://assets/sprites/characters/icons/spirit.png" id="8_rhcbs"]
+[ext_resource type="Script" path="res://scripts/content/bundle.gd" id="9_eq6wl"]
+[ext_resource type="Texture2D" uid="uid://cqkc3oopmpiaj" path="res://assets/sprites/characters/icons/bf-pixel.png" id="10_vgx8f"]
+
+[sub_resource type="Resource" id="Resource_f7q77"]
+script = ExtResource("3_ffgy4")
+texture = ExtResource("4_uxjjg")
+filter = 2
+scale = Vector2(1, 1)
+hframes = 2
+vframes = 1
+
+[sub_resource type="Resource" id="Resource_vtydj"]
+script = ExtResource("5_ctti7")
+display_name = &"Bopeebo"
+folder_name = &"bopeebo"
+difficulties = Array[Dictionary]([{
+"display_name": "Easy",
+"file": "easy",
+"variation": ""
+}, {
+"display_name": "Normal",
+"file": "normal",
+"variation": ""
+}, {
+"display_name": "Hard",
+"file": "hard",
+"variation": ""
+}, {
+"display_name": "Erect",
+"file": "erect",
+"variation": "erect"
+}, {
+"display_name": "Nightmare",
+"file": "erect",
+"target": "nightmare",
+"variation": "erect"
+}])
+icon = SubResource("Resource_f7q77")
+
+[sub_resource type="Resource" id="Resource_f5vmx"]
+script = ExtResource("5_ctti7")
+display_name = &"Fresh"
+folder_name = &"fresh"
+difficulties = Array[Dictionary]([{
+"display_name": "Easy",
+"file": "easy",
+"variation": ""
+}, {
+"display_name": "Normal",
+"file": "normal",
+"variation": ""
+}, {
+"display_name": "Hard",
+"file": "hard",
+"variation": ""
+}, {
+"display_name": "Erect",
+"file": "erect",
+"variation": "erect"
+}, {
+"display_name": "Nightmare",
+"file": "erect",
+"target": "nightmare",
+"variation": "erect"
+}])
+icon = SubResource("Resource_f7q77")
+
+[sub_resource type="Resource" id="Resource_3k0kd"]
+script = ExtResource("5_ctti7")
+display_name = &"DadBattle"
+folder_name = &"dadbattle"
+difficulties = Array[Dictionary]([{
+"display_name": "Easy",
+"file": "easy",
+"variation": ""
+}, {
+"display_name": "Normal",
+"file": "normal",
+"variation": ""
+}, {
+"display_name": "Hard",
+"file": "hard",
+"variation": ""
+}, {
+"display_name": "Erect",
+"file": "erect",
+"variation": "erect"
+}, {
+"display_name": "Nightmare",
+"file": "erect",
+"target": "nightmare",
+"variation": "erect"
+}])
+icon = SubResource("Resource_f7q77")
+
+[sub_resource type="Resource" id="Resource_k8l10"]
+script = ExtResource("2_l81q7")
+level_name = "DADDY DEAREST"
+clear_color = Color(0.976471, 0.811765, 0.317647, 1)
+song_list = Array[ExtResource("5_ctti7")]([SubResource("Resource_vtydj"), SubResource("Resource_f5vmx"), SubResource("Resource_3k0kd")])
+
+[sub_resource type="Resource" id="Resource_vgn75"]
+script = ExtResource("3_ffgy4")
+texture = ExtResource("7_2tjle")
+filter = 1
+scale = Vector2(1, 1)
+hframes = 1
+vframes = 1
+
+[sub_resource type="Resource" id="Resource_fqwfp"]
+script = ExtResource("5_ctti7")
+display_name = &"Senpai"
+folder_name = &"senpai"
+difficulties = Array[Dictionary]([{
+"display_name": "Easy",
+"file": "easy",
+"variation": ""
+}, {
+"display_name": "Normal",
+"file": "normal",
+"variation": ""
+}, {
+"display_name": "Hard",
+"file": "hard",
+"variation": ""
+}, {
+"display_name": "Erect",
+"file": "erect",
+"variation": "erect"
+}, {
+"display_name": "Nightmare",
+"file": "erect",
+"target": "nightmare",
+"variation": "erect"
+}])
+icon = SubResource("Resource_vgn75")
+
+[sub_resource type="Resource" id="Resource_st6so"]
+script = ExtResource("5_ctti7")
+display_name = &"Roses"
+folder_name = &"roses"
+difficulties = Array[Dictionary]([{
+"display_name": "Easy",
+"file": "easy",
+"variation": ""
+}, {
+"display_name": "Normal",
+"file": "normal",
+"variation": ""
+}, {
+"display_name": "Hard",
+"file": "hard",
+"variation": ""
+}, {
+"display_name": "Erect",
+"file": "erect",
+"variation": "erect"
+}, {
+"display_name": "Nightmare",
+"file": "erect",
+"target": "nightmare",
+"variation": "erect"
+}])
+icon = SubResource("Resource_vgn75")
+
+[sub_resource type="Resource" id="Resource_ckkda"]
+script = ExtResource("3_ffgy4")
+texture = ExtResource("8_rhcbs")
+filter = 1
+scale = Vector2(1, 1)
+hframes = 1
+vframes = 1
+
+[sub_resource type="Resource" id="Resource_4hhlr"]
+script = ExtResource("5_ctti7")
+display_name = &"Thorns"
+folder_name = &"thorns"
+difficulties = Array[Dictionary]([{
+"display_name": "Easy",
+"file": "easy",
+"variation": ""
+}, {
+"display_name": "Normal",
+"file": "normal",
+"variation": ""
+}, {
+"display_name": "Hard",
+"file": "hard",
+"variation": ""
+}, {
+"display_name": "Erect",
+"file": "erect",
+"variation": "erect"
+}, {
+"display_name": "Nightmare",
+"file": "erect",
+"target": "nightmare",
+"variation": "erect"
+}])
+icon = SubResource("Resource_ckkda")
+
+[sub_resource type="Resource" id="Resource_rk6ao"]
+script = ExtResource("2_l81q7")
+level_name = "HATING SIMULATOR FT. MOAWLING"
+clear_color = Color(0.976471, 0.811765, 0.317647, 1)
+level_title = ExtResource("6_gje2y")
+song_list = Array[ExtResource("5_ctti7")]([SubResource("Resource_fqwfp"), SubResource("Resource_st6so"), SubResource("Resource_4hhlr")])
+
+[sub_resource type="Resource" id="Resource_hbrif"]
+script = ExtResource("3_ffgy4")
+texture = ExtResource("10_vgx8f")
+filter = 1
+scale = Vector2(1, 1)
+hframes = 1
+vframes = 1
+
+[sub_resource type="Resource" id="Resource_5uh6v"]
+script = ExtResource("5_ctti7")
+display_name = &"Test"
+folder_name = &"test"
+difficulties = Array[Dictionary]([{
+"display_name": "Hard",
+"file": "hard",
+"variation": ""
+}])
+icon = SubResource("Resource_hbrif")
+
+[sub_resource type="Resource" id="Resource_b3dfw"]
+script = ExtResource("5_ctti7")
+display_name = &"Twiddlefinger"
+folder_name = &"twiddlefinger"
+difficulties = Array[Dictionary]([{
+"display_name": "Hard",
+"file": "hard",
+"variation": ""
+}])
+
+[resource]
+script = ExtResource("9_eq6wl")
+name = &"Friday Night Funkin\'"
+level_list = Array[ExtResource("2_l81q7")]([SubResource("Resource_k8l10"), SubResource("Resource_rk6ao")])
+song_list = Array[ExtResource("5_ctti7")]([SubResource("Resource_5uh6v"), SubResource("Resource_b3dfw")])

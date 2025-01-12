@@ -1,0 +1,189 @@
+[gd_scene load_steps=9 format=3 uid="uid://clhixabbhsyog"]
+
+[ext_resource type="Script" path="res://scenes/gameplay/hud/recreations/kade.gd" id="1_b2qlu"]
+[ext_resource type="Texture2D" uid="uid://dld56rmrbxk8f" path="res://assets/sprites/ui/normal/healthBar.png" id="2_cmbio"]
+[ext_resource type="Texture2D" uid="uid://cshoihsf026ps" path="res://assets/sprites/characters/icons/dad.png" id="4_ckos5"]
+[ext_resource type="Texture2D" uid="uid://bqbsv48mg5br4" path="res://assets/sprites/characters/icons/bf.png" id="5_wleqm"]
+[ext_resource type="FontFile" uid="uid://d2n5gv6tiowah" path="res://assets/fonts/vcr.ttf" id="6_atq0u"]
+
+[sub_resource type="Animation" id="Animation_febrr"]
+resource_name = "bump"
+length = 0.416671
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player1:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0416667, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player2:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0416667, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k3r61"]
+_data = {
+"bump": SubResource("Animation_febrr")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_daqce"]
+font = ExtResource("6_atq0u")
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="kade" type="Control" node_paths=PackedStringArray("health_bar_icons")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b2qlu")
+health_bar_icons = [NodePath("health_bar/player2"), NodePath("health_bar/player1")]
+
+[node name="health_bar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 285.0
+offset_right = 301.0
+offset_bottom = 304.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+fill_mode = 1
+texture_under = ExtResource("2_cmbio")
+texture_progress = ExtResource("2_cmbio")
+tint_under = Color(1, 0, 0, 1)
+tint_progress = Color(0.333333, 1, 0, 1)
+
+[node name="player2" type="Sprite2D" parent="health_bar"]
+position = Vector2(299, -8)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("4_ckos5")
+offset = Vector2(-50, 0)
+hframes = 2
+
+[node name="player1" type="Sprite2D" parent="health_bar"]
+position = Vector2(303, 5)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_wleqm")
+offset = Vector2(50, 0)
+flip_h = true
+hframes = 2
+
+[node name="animation_player" type="AnimationPlayer" parent="health_bar"]
+libraries = {
+"": SubResource("AnimationLibrary_k3r61")
+}
+
+[node name="status_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.261
+anchor_top = 0.967
+anchor_right = 0.745
+anchor_bottom = 0.989
+offset_left = -0.0800171
+offset_top = 7.75989
+offset_right = 0.399902
+offset_bottom = 7.91992
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_atq0u")
+theme_override_font_sizes/font_size = 16
+text = "Score: 0 | Combo Breaks: 0 | Accuracy: 0% | N/A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="judge_counter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -7.5
+offset_right = 1.0
+offset_bottom = 7.5
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_atq0u")
+theme_override_font_sizes/font_size = 20
+text = "Epics: 0
+Sicks: 0
+Goods: 0
+Bads: 0
+Shits: 0
+Misses: 0"
+vertical_alignment = 1
+
+[node name="watermark" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.003
+anchor_top = 0.971
+anchor_right = 0.231
+anchor_bottom = 0.989
+offset_left = 0.16
+offset_top = -3.12006
+offset_right = 3.32001
+offset_bottom = -0.0800171
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_atq0u")
+theme_override_font_sizes/font_size = 16
+text = "Song Name - FR v?.?.?"
+vertical_alignment = 1
+
+[node name="timer" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.265
+anchor_right = 0.734
+anchor_bottom = 0.026
+offset_left = -0.199982
+offset_top = 5.0
+offset_right = 0.47998
+offset_bottom = 5.28
+grow_horizontal = 2
+value = 50.0
+texture_under = ExtResource("2_cmbio")
+texture_progress = ExtResource("2_cmbio")
+tint_under = Color(0.55, 0.55, 0.55, 1)
+tint_progress = Color(0.316667, 1, 0, 1)
+
+[node name="label" type="Label" parent="timer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_bottom = 2.0
+grow_horizontal = 2
+text = "Song Name"
+label_settings = SubResource("LabelSettings_daqce")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,469 @@
+[gd_scene load_steps=12 format=3 uid="uid://deo3obwvipfis"]
+
+[ext_resource type="Theme" uid="uid://bh3fs6l4n44y4" path="res://assets/themes/funkin_style.tres" id="1_dxeve"]
+[ext_resource type="Script" path="res://scenes/ui/options/options_window.gd" id="1_gulft"]
+[ext_resource type="FontFile" uid="uid://d2n5gv6tiowah" path="res://assets/fonts/vcr.ttf" id="2_mtl8v"]
+[ext_resource type="PackedScene" uid="uid://3e0gva7f3ej5" path="res://scenes/ui/options/option_item.tscn" id="3_wjca4"]
+[ext_resource type="Script" path="res://scenes/ui/options/keybind_option.gd" id="4_awyi8"]
+[ext_resource type="Script" path="res://scenes/ui/options/timing_difficulty_option.gd" id="4_uwdh8"]
+[ext_resource type="AudioStream" uid="uid://toqn7nqo322h" path="res://assets/audio/sfx/volume_appear.ogg" id="6_beq18"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_668iw"]
+font_size = 24
+font_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0a26v"]
+draw_center = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ucog"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1s7ih"]
+bg_color = Color(0, 0, 0, 0.592157)
+corner_detail = 1
+
+[node name="options_window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_dxeve")
+script = ExtResource("1_gulft")
+
+[node name="left_panel" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.009
+anchor_top = 0.15
+anchor_right = 0.184
+anchor_bottom = 0.64
+offset_left = -0.52
+offset_right = -0.52002
+offset_bottom = -7.80002
+mouse_filter = 1
+
+[node name="page_selector" type="VBoxContainer" parent="left_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="pages" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_top = 0.078
+anchor_right = 0.887
+anchor_bottom = 0.772
+offset_left = 0.639969
+offset_top = -0.16
+offset_right = 0.640015
+offset_bottom = 0.159973
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="gameplay" type="VBoxContainer" parent="pages"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="notes" type="Label" parent="pages/gameplay"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Notes"
+label_settings = SubResource("LabelSettings_668iw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="scroll_direction" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Scroll Direction"
+description = "Defines which direction the notes will scroll to."
+variable = "scroll_direction"
+option_type = 2
+display_names = Array[StringName]([&"Up", &"Down"])
+
+[node name="centered_playfield" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Centered PlayField"
+description = "Centers your notes and hides the enemy's."
+variable = "centered_playfield"
+
+[node name="scroll_speed_behaviour" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Scroll Speed Behaviour"
+description = "Defines how scroll speed behaves in-game."
+variable = "scroll_speed_behaviour"
+option_type = 2
+display_names = Array[StringName]([&"Chart based", &"Multiplicative", &"Constant"])
+
+[node name="scroll_speed" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Scroll Speed"
+description = "Defines your set scroll speed, the Scroll Speed Behaviour
+option will dictate how it impacts gameplay."
+variable = "scroll_speed"
+option_type = 1
+steps = 0.01
+
+[node name="input" type="Label" parent="pages/gameplay"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Input"
+label_settings = SubResource("LabelSettings_668iw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="use_epics" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Use Epics"
+description = "Enables a new 5th judgement greater than \"Sick!\""
+variable = "use_epics"
+
+[node name="timing_diff" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_uwdh8")
+option_name = &"Timing Difficulty"
+description = "Modifies timing windows for judgments in order to make them harder/easier to hit."
+variable = "timing_diff"
+option_type = 2
+
+[node name="playfield_side" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"PlayField Side"
+description = "Which playfield belongs to the player?
+NOTE: None will make the game enter Autoplay Mode."
+variable = "playfield_side"
+option_type = 2
+display_names = Array[StringName]([&"Right", &"Left", &"None"])
+
+[node name="ghost_tapping" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Ghost Tapping"
+description = "Allows you to press keys while there's no notes to hit."
+variable = "ghost_tapping"
+
+[node name="beat_offset" parent="pages/gameplay" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Beat Offset"
+name_display = "@ms"
+description = "Changes how early or late the Conductor is offset to, this will also make it so notes spawn earlier/later than usual,
+Recommended if you use bluetooth headphones."
+variable = "beat_offset"
+option_type = 1
+steps = 0.1
+speed = 16.0
+
+[node name="keybinds" type="VBoxContainer" parent="pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="notes" type="Label" parent="pages/keybinds"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Notes"
+label_settings = SubResource("LabelSettings_668iw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="note0_keybind" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"Note Left Keybind"
+variable = "note0"
+
+[node name="note1_keybind" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"Note Down Keybind"
+variable = "note1"
+
+[node name="note2_keybind" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"Note Up Keybind"
+variable = "note2"
+
+[node name="note3_keybind" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"Note Right Keybind"
+variable = "note3"
+
+[node name="ui" type="Label" parent="pages/keybinds"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "User Interface"
+label_settings = SubResource("LabelSettings_668iw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ui_left_keybind" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"UI Left Keybind"
+variable = "ui_left"
+
+[node name="ui_down_keybind" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"UI Down Keybind"
+variable = "ui_down"
+
+[node name="ui_up_keybind" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"UI Up Keybind"
+variable = "ui_up"
+
+[node name="ui_right_keybind" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"UI Right Keybind"
+variable = "ui_right"
+
+[node name="ui_fullscreen" parent="pages/keybinds" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+script = ExtResource("4_awyi8")
+option_name = &"Fullscreen"
+variable = "ui_fullscreen"
+
+[node name="visuals" type="VBoxContainer" parent="pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="graphics" type="Label" parent="pages/visuals"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Graphics"
+label_settings = SubResource("LabelSettings_668iw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="framerate" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Framerate Cap"
+description = "Define here your frames per second limit."
+variable = "framerate_cap"
+option_type = 1
+
+[node name="framerate_mode" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Framerate Mode"
+description = "Define how the engine should treat framerate."
+variable = "framerate_mode"
+option_type = 2
+display_names = Array[StringName]([&"Capped", &"Unlimited", &"VSync"])
+
+[node name="flashing" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Flashing Lights"
+description = "Enables certain flashing effects in menus and gameplay
+Please disable this if you are sensitive to those."
+variable = "flashing"
+
+[node name="hud" type="Label" parent="pages/visuals"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "HUD"
+label_settings = SubResource("LabelSettings_668iw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hud_style" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"HUD Style"
+description = "Choose a HUD Style."
+variable = "hud_style"
+option_type = 2
+display_names = Array[StringName]([&"Song-specific", &"Raven", &"Kade", &"Psych", &"Classic"])
+
+[node name="coloured_combo" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Coloured Combo"
+description = "Makes combo coloured after  either your judgments or clear flag."
+variable = "coloured_combo"
+option_type = 2
+display_names = Array[StringName]([&"None", &"Only Judgments", &"Only Combo", &"Judges and Combo"])
+
+[node name="combo_colour_mode" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Combo Colour Mode"
+description = "Dictates how \"Coloured Combo\" should colour the judgments and/or combo"
+variable = "combo_colour_mode"
+option_type = 2
+display_names = Array[StringName]([&"Judgment", &"Clear Flag"])
+
+[node name="always_display_combo" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Always Display Combo"
+description = "Instead of making combo numbers fade, they will be kept on-screen"
+variable = "always_display_combo"
+
+[node name="judgement_counter" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Judgement Counter"
+description = "Displays a Counter counting how many of {some} judgement you've hit, for HUDs that implement it."
+variable = "judgement_counter"
+option_type = 2
+display_names = Array[StringName]([&"Disabled", &"Left", &"Right"])
+
+[node name="note_splashes" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Note Splashes"
+description = "Enables a firework effect when hitting judgements that allow it."
+variable = "note_splashes"
+option_type = 2
+display_names = Array[StringName]([&"Disabled", &"Player-only", &"Every Player"])
+
+[node name="hold_covers" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Hold Covers"
+description = "Enables a spark effect when hitting judgements that allow it while holding notes."
+variable = "hold_covers"
+option_type = 2
+display_names = Array[StringName]([&"Disabled", &"No-explosion", &"Full"])
+
+[node name="hold_layer" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Hold Note Layer"
+description = "Defines how hold notes should be layered."
+variable = "hold_layer"
+option_type = 2
+display_names = Array[StringName]([&"Above Notes", &"Behind Notes"])
+
+[node name="receptor_size" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Receptor Size"
+description = "Define the size of the notes on-screen."
+variable = "receptor_size"
+option_type = 1
+steps = 0.1
+
+[node name="show_timer" parent="pages/visuals" instance=ExtResource("3_wjca4")]
+layout_mode = 2
+option_name = &"Show Timer"
+description = "Enables a timer at the top of the screen, shows song elapsed time and total time."
+variable = "show_timer"
+
+[node name="selector" type="Label" parent="pages"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.132
+anchor_right = 0.857
+anchor_bottom = 0.1
+offset_left = -0.272003
+offset_right = 0.12793
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0a26v")
+text = "> <"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="descriptor" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.185
+anchor_top = 0.812
+anchor_right = 0.891
+anchor_bottom = 0.956
+offset_left = 0.199997
+offset_top = -1.63995
+offset_right = 0.52002
+offset_bottom = -0.320007
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "1 Billion games, but no games."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="help_key" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.837
+anchor_right = 1.0
+anchor_bottom = 0.978
+offset_left = 379.0
+offset_top = -602.64
+offset_right = -1.0
+offset_bottom = -665.16
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_mtl8v")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4ucog")
+text = "Press F1 for Help"
+horizontal_alignment = 2
+
+[node name="help_text" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_mtl8v")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_1s7ih")
+text = "- Options Menu Help -
+
+So let's go over keybinds since that's basically the only thing we can go over, this menu is dead simple so this is enough.
+
+-----------------------------
+
+While *not* modifying options...
+
+Left/Right or Click on Left Panel to Change Page
+Up/Down or Click on an Option to select It
+Enter/Space or Double Click an option to modify it
+
+While modifying an option...
+
+Use Left/Right or Shift+Mouse Wheel to modify the option's value
+Press Enter/Space or Double Click again to stop modifying
+You can also press Escape to stop modifying
+
+
+That's pretty much it
+Thanks for reading allat."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="metronome" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_beq18")
+bus = &"SFX"

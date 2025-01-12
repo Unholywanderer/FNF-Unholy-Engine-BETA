@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://2wkbyp2gb0gu"]
+
+[ext_resource type="Script" path="res://scenes/menu/freeplay_menu.gd" id="1_mwt6o"]
+[ext_resource type="Texture2D" uid="uid://mr31twd36rpw" path="res://assets/sprites/menu/menuDesat.png" id="2_a718r"]
+[ext_resource type="Resource" uid="uid://llhw2mb1u7hu" path="res://assets/default_levels.tres" id="2_y5fiq"]
+[ext_resource type="FontFile" uid="uid://d2n5gv6tiowah" path="res://assets/fonts/vcr.ttf" id="3_r3f4j"]
+[ext_resource type="Texture2D" uid="uid://d34lk6quc18ya" path="res://assets/sprites/ui/freeplay/shuffle.png" id="4_52uua"]
+[ext_resource type="Script" path="res://scenes/ui/alphabet.gd" id="5_h6t7p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwtvu"]
+bg_color = Color(0, 0, 0, 0.392157)
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_r764n"]
+font = ExtResource("3_r3f4j")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_1e7pw"]
+font = ExtResource("3_r3f4j")
+font_size = 24
+
+[node name="freeplay_menu" type="Node2D"]
+script = ExtResource("1_mwt6o")
+bundle = ExtResource("2_y5fiq")
+
+[node name="background" type="Sprite2D" parent="."]
+modulate = Color(0.389287, 0.389287, 0.389287, 1)
+position = Vector2(640, 360)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_a718r")
+
+[node name="random_icon" type="Sprite2D" parent="."]
+position = Vector2(470, 320)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_52uua")
+
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="song_container" type="Control" parent="ui"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="random" type="Control" parent="ui/song_container"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -41.6005
+offset_right = 120.0
+offset_bottom = 38.3995
+grow_vertical = 2
+script = ExtResource("5_h6t7p")
+text = "Random"
+is_menu = true
+origin = Vector2(120, 280)
+
+[node name="score_text" type="Label" parent="ui"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.702
+anchor_right = 0.996
+anchor_bottom = 0.174
+offset_left = -3.56006
+offset_right = 0.119873
+offset_bottom = -23.28
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vwtvu")
+text = "TOP SCORE: 000000
+Accuracy: N/A%"
+label_settings = SubResource("LabelSettings_r764n")
+horizontal_alignment = 1
+
+[node name="difficulty_text" type="Label" parent="ui/score_text"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.541
+anchor_right = 1.0
+anchor_bottom = 0.98
+offset_top = 11.244
+offset_bottom = 0.0400009
+grow_horizontal = 2
+grow_vertical = 0
+text = "< DIFFICULTY>"
+label_settings = SubResource("LabelSettings_1e7pw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="playlist_text" type="Label" parent="ui"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -335.0
+offset_top = -237.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_vwtvu")
+text = "[PLAYLIST]
+-
+-
+-
+-
+-
+-"
+label_settings = SubResource("LabelSettings_r764n")
+horizontal_alignment = 1
